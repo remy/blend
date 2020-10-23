@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blend opacity to find the real colour</title>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+
+  <body>
+    <main>
+      <h1>Blended opacity</h1>
+      <div id="result">
+        <div></div>
+        <a target="_blank"><img title="click to download"></a>
+      </div>
+      <div id="input">
+        <div>
+          <label for="fg">Foreground</label>
+          <input spellcheck="false" type="text" id="fg" value="#000000">
+          <input type="color" id="fgpicker">
+        </div>
+        <div>
+          <label for="opacity">Opacity</label>
+          <input id="opacity" type="range" min="0" max="100" value="75">
+          <output>75</output>
+        </div>
+        <div>
+          <label for="bg">Background</label>
+          <input spellcheck="false" type="text" id="bg" value="#ffffff">
+          <input type="color" id="bgpicker">
+        </div>
+      </div>
+      <canvas hidden></canvas>
+    </main>
+    <footer>
+      <p>Built by <a href="https://remysharp.com">@rem</a> on a semi-opaque day 🕶</p>
+    </footer>
+    <script src="/module.js" defer></script>
+  </body>
+
+</html>
