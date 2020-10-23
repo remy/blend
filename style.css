@@ -38,6 +38,8 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 output {
+  width: 40px;
+  text-align: right;
   margin-left: 8px;
 }
 

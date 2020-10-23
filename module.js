@@ -8,6 +8,7 @@ const $ = (s) => document.querySelector(s);
 
 const output = $("output");
 const opacity = $("#opacity");
+const test = $("#test");
 const result = $("#result div");
 const fg = $("#fg");
 const bg = $("#bg");
@@ -35,14 +36,26 @@ root.addEventListener(
   false
 );
 
-opacity.addEventListener("input", (event) => {
-  output.textContent = event.target.value;
-});
-
 const pixel = (rgb) =>
   `47 49 46 38 39 61 01 00 01 00 80 01 00 ${rgb.join(
     " "
   )} 00 00 00 2C 00 00 00 00 01 00 01 00 00 02 02 44 01 00 3B`;
+
+function toRGB(value) {
+  test.style.backgroundColor = value;
+
+  const rgb = window.getComputedStyle(test).backgroundColor;
+  const match = rgb.match(/rgba?\((\d+), (\d+), (\d+)(?:, ([0-9.]+))?\)/);
+
+  if (!match || match.length < 4) return;
+
+  const [, r, g, b] = match.map((_) => parseInt(_, 10));
+  return { r, g, b };
+}
+
+function toHex({ r, g, b }) {
+  return "#" + [r, g, b].map((_) => _.toString(16).padStart(2, "0")).join("");
+}
 
 /**
  * @param {HTMLInputElement} node
@@ -57,9 +70,15 @@ function updateColour(node) {
  * @param {HTMLInputElement} node
  */
 function update(node) {
-  const colour = node.nextElementSibling;
-  colour.style.backgroundColor = node.value;
-  colour.value = node.value;
+  if (node.type === "text") {
+    const colour = node.nextElementSibling;
+    const rgbColour = toHex(toRGB(node.value));
+    colour.style.backgroundColor = rgbColour;
+    colour.value = rgbColour;
+  } else if (node.type === "range") {
+    output.textContent = node.value;
+  }
+
   try {
     calc();
   } catch (e) {
@@ -87,12 +106,26 @@ function calc() {
   // return { r, g, b };
 
   result.innerHTML = `
-  <p>#${[r, g, b].map((_) => _.toString(16).padStart(2, "0")).join("")}</p>
+  <p>${toHex({ r, g, b })}</p>
   <p>rgb(${[r, g, b].join(", ")})</p>
   `;
 
   img.src = canvas.toDataURL();
+  const query = new URLSearchParams();
+  query.set("fg", fg.value);
+  query.set("bg", bg.value);
+  query.set("opacity", opacity.value);
+  window.history.replaceState(null, null, "?" + query.toString());
 }
 
+// try to restore from query
+if (window.location.search) {
+  const query = new URLSearchParams(window.location.search.substring(1));
+  bg.value = query.get("bg");
+  fg.value = query.get("fg");
+  opacity.value = query.get("opacity");
+}
+
+update(opacity);
 update(bg);
 update(fg);
