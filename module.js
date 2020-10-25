@@ -1,5 +1,3 @@
-console.clear();
-
 /**
  * @param {string} s
  * @returns {Element}
@@ -35,11 +33,6 @@ root.addEventListener(
   },
   false
 );
-
-const pixel = (rgb) =>
-  `47 49 46 38 39 61 01 00 01 00 80 01 00 ${rgb.join(
-    " "
-  )} 00 00 00 2C 00 00 00 00 01 00 01 00 00 02 02 44 01 00 3B`;
 
 function toRGB(value) {
   test.style.backgroundColor = value;
@@ -92,7 +85,6 @@ function calc() {
 
   ctx.fillStyle = bg.value;
   ctx.fillRect(0, 0, width, height);
-  // console.log(ctx.globalAlpha, parseInt(opacity.value, 10) / 100);
 
   ctx.globalAlpha = parseInt(opacity.value, 10) / 100;
 
@@ -102,8 +94,7 @@ function calc() {
   ctx.globalAlpha = 1;
 
   const imageData = ctx.getImageData(0, 0, 1, 1);
-  const [r, g, b, a] = imageData.data;
-  // return { r, g, b };
+  const [r, g, b] = imageData.data;
 
   result.innerHTML = `
   <p>${toHex({ r, g, b })}</p>

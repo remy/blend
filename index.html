@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blend opacity to find the real colour</title>
-    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
+    <link rel="icon" type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2250%22 fill=%22%23bd10e0%22></rect><path d=%22M46.12 75.20L46.12 75.20Q44.92 75.20 43.32 75.12Q41.72 75.04 40.12 74.92Q38.52 74.80 36.92 74.56Q35.32 74.32 34.12 74L34.12 74L34.12 26.00Q35.32 25.68 36.88 25.44Q38.44 25.20 40.08 25.08Q41.72 24.96 43.28 24.88Q44.84 24.80 46.12 24.80L46.12 24.80Q49.80 24.80 53 25.44Q56.20 26.08 58.56 27.60Q60.92 29.12 62.24 31.60Q63.56 34.08 63.56 37.76L63.56 37.76Q63.56 39.52 63.00 41.16Q62.44 42.80 61.44 44.24Q60.44 45.68 59.12 46.76Q57.80 47.84 56.28 48.40L56.28 48.40Q60.36 49.52 63.12 52.52Q65.88 55.52 65.88 60.32L65.88 60.32Q65.88 67.68 61.16 71.44Q56.44 75.20 46.12 75.20ZM47.40 51.68L40.68 51.68L40.68 69.36Q40.84 69.44 42.48 69.56Q44.12 69.68 46.60 69.68L46.60 69.68Q49.08 69.68 51.36 69.28Q53.64 68.88 55.40 67.80Q57.16 66.72 58.24 64.96Q59.32 63.20 59.32 60.40L59.32 60.40Q59.32 57.92 58.32 56.24Q57.32 54.56 55.68 53.56Q54.04 52.56 51.88 52.12Q49.72 51.68 47.40 51.68L47.40 51.68ZM40.68 30.64L40.68 46.24L45.88 46.24Q47.88 46.24 49.88 45.84Q51.88 45.44 53.48 44.56Q55.08 43.68 56.04 42.16Q57 40.64 57 38.32L57 38.32Q57 36.16 56.12 34.64Q55.24 33.12 53.80 32.16Q52.36 31.20 50.48 30.80Q48.60 30.40 46.52 30.40L46.52 30.40Q44.44 30.40 42.88 30.44Q41.32 30.48 40.68 30.64L40.68 30.64Z%22 fill=%22%23ffffff%22></path></svg>" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
   </head>
 
   <body>
     <main>
-      <h1>Blended opacity</h1>
       <div id="result">
         <div></div>
         <a target="_blank"><img title="click to download"></a>
@@ -33,6 +34,7 @@
           <input type="color" id="fgpicker">
         </div>
       </div>
+      <p><small>Blend the background and foreground applying opacity to find a true solid colour.</small></p>
       <canvas hidden></canvas>
       <div id="test" hidden></div>
     </main>
